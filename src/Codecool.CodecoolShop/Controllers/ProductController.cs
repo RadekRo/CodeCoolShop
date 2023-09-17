@@ -27,8 +27,28 @@ namespace Codecool.CodecoolShop.Controllers
 
         public IActionResult Index()
         {
-            var products = ProductService.GetProductsForCategory(1);
-            return View(products.ToList());
+            var products = ProductService.GetProductsForCategory(1).ToList();
+            products.AddRange(ProductService.GetProductsForCategory(2).ToList());
+            products.AddRange(ProductService.GetProductsForCategory(3).ToList());
+            return View(products.Distinct().ToList());
+        }
+
+        public IActionResult Motorcycles()
+        {
+            var products = ProductService.GetProductsForCategory(1).ToList();
+            return View("NIndex", products.ToList());
+        }
+
+        public IActionResult Gear()
+        {
+            var products = ProductService.GetProductsForCategory(2).ToList();
+            return View("NIndex", products.ToList());
+        }
+
+        public IActionResult Accessories()
+        {
+            var products = ProductService.GetProductsForCategory(3).ToList();
+            return View("NIndex", products.ToList());
         }
 
         public IActionResult Privacy()

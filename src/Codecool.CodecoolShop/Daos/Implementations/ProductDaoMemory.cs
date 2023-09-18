@@ -13,6 +13,7 @@ namespace Codecool.CodecoolShop.Daos.Implementations
 
         private ProductDaoMemory()
         {
+
         }
 
         public static ProductDaoMemory GetInstance()

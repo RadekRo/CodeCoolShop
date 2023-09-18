@@ -29,14 +29,17 @@ namespace Codecool.CodecoolShop.Controllers
         [HttpGet("{id}")]
         public IActionResult Index(int id)
         {
-            var products = SupplierService.GetProductsForSupplier(id);
-            return View(products.ToList());
+            var product = SupplierService.GetProductsForSupplier(id);
+            return View(product.ToList());
         }
 
-        public IActionResult Privacy()
+        [HttpGet("list")]
+        public IActionResult Index()
         {
-            return View();
+            var suppliers = SupplierService.GetAll();
+            return View(suppliers.ToList());
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

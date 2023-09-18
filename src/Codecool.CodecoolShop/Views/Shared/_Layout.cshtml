@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -22,10 +23,18 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Categories" asp-action="Categories">Categories</a>
+                            <button class="dropdown-item">
+                                Categories
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Motocykle">Motocykle</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Kaski i ubrania">Kaski i ubrania</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Akcesoria">Akcesoria</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Suppliers" asp-action="Suppliers">Suppliers</a>
+                            <a asp-action="Index" asp-controller="Supplier" asp-route-id="1">Amazon</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Basker" asp-action="Basket">Basket (@ViewData["BasketQty"])</a>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,23 +12,24 @@ using Codecool.CodecoolShop.Services;
 
 namespace Codecool.CodecoolShop.Controllers
 {
-    public class ProductController : Controller
+    [Route("supplier")]
+    public class SupplierController : Controller
     {
-        private readonly ILogger<ProductController> _logger;
-        public ProductService ProductService { get; set; }
+        private readonly ILogger<SupplierController> _logger;
+        public SupplierService SupplierService { get; set; }
 
-        public ProductController(ILogger<ProductController> logger)
+        public SupplierController(ILogger<SupplierController> logger)
         {
             _logger = logger;
-            ProductService = new ProductService(
+            SupplierService = new SupplierService(
                 ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
+                SupplierDaoMemory.GetInstance());
         }
 
-
-        public IActionResult Index()
+        [HttpGet("{id}")]
+        public IActionResult Index(int id)
         {
-            var products = ProductService.GetProductsForCategory(1);
+            var products = SupplierService.GetProductsForSupplier(id);
             return View(products.ToList());
         }
 

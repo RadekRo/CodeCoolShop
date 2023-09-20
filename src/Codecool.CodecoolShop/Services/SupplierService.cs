@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Codecool.CodecoolShop.Daos;
 using Codecool.CodecoolShop.Models;
 
@@ -24,6 +25,11 @@ namespace Codecool.CodecoolShop.Services
         {
             Supplier supplier = this.supplierDao.Get(supplierId);
             return this.productDao.GetBy(supplier);
+        }
+        public List<Supplier> GetAllSuppliers()
+        {
+            var suppliersList = supplierDao.GetAll();
+            return suppliersList.ToList();
         }
     }
 }

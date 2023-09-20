@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
+using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 
 namespace Codecool.CodecoolShop.Controllers
 {
@@ -34,11 +35,22 @@ namespace Codecool.CodecoolShop.Controllers
             SetCategoriesInViewData();
             return View(products.ToList());
         }
+        public IActionResult Categories()
+        {
+            SetCategoriesInViewData();
+            return View();
+        }
+        public IActionResult Suppliers()
+        {
+            SetCategoriesInViewData();
+            return View();
+        }
         public IActionResult Privacy()
         {
             SetCategoriesInViewData();
             return View();
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

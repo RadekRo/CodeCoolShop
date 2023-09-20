@@ -31,8 +31,12 @@
                                 }
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a asp-action="Index" asp-controller="Supplier" asp-route-id="1">Amazon</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" id="categories" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" asp-area="" asp-controller="Categories" asp-action="Categories">Suppliers</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Categories" asp-route-category="1">Amazon</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Categories" asp-route-category="1">Lenovo</a>
+                            </div>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Basket" asp-action="Basket">Basket (@ViewData["BasketQty"])</a>

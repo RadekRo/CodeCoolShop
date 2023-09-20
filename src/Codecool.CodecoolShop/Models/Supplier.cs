@@ -8,7 +8,7 @@ namespace Codecool.CodecoolShop.Models
         
         public override string ToString()
         {
-            return new string($"Id: {Id} Name: {Name} Description: {Description}");
+            return new string($"{Name}");
         }
     }
 }

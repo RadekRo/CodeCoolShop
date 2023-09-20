@@ -1,6 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Category";
 }
+@model List<Codecool.CodecoolShop.Models.Product>
+
 <h1>@ViewData["Title"]</h1>
 
 <p>Use this page to show products from certain category.</p>
+@foreach (var category in Model)
+{
+    @category.Name
+}

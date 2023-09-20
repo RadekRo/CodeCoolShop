@@ -1,6 +1,20 @@
 ﻿@{
     ViewData["Title"] = "Suppliers";
 }
+@model List<Codecool.CodecoolShop.Models.Product>
+
 <h1>@ViewData["Title"]</h1>
 
+
 <p>Use this page to show products from certain supplier.</p>
+@if (Model != null)
+{
+    @foreach (var supplier in Model)
+    {
+        @supplier.Name
+    }
+}
+else
+{
+    <p>No products available from this supplier.</p>
+}

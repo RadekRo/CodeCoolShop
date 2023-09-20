@@ -25,6 +25,7 @@ namespace Codecool.CodecoolShop.Controllers
             ProductService = new ProductService(
                 ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance());
+
             SupplierService = new SupplierService(
                 ProductDaoMemory.GetInstance(),
                 SupplierDaoMemory.GetInstance());
@@ -46,17 +47,19 @@ namespace Codecool.CodecoolShop.Controllers
             SetSuppliersInViewData();
             return View(products.ToList());
         }
-        public IActionResult Categories()
+        public IActionResult Categories(int category)
         {
             SetCategoriesInViewData();
             SetSuppliersInViewData();
-            return View();
+            var products = ProductService.GetProductsForCategory(category);
+            return View(products.ToList());
         }
-        public IActionResult Suppliers()
+        public IActionResult Suppliers(int supplier)
         {
             SetCategoriesInViewData();
             SetSuppliersInViewData();
-            return View();
+            var products = SupplierService.GetProductsForSupplier(supplier);
+            return View(products.ToList());
         }
         public IActionResult Privacy()
         {

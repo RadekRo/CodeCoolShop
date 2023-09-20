@@ -9,9 +9,9 @@
 <p>Use this page to show products from certain supplier.</p>
 @if (Model != null)
 {
-    @foreach (var supplier in Model)
+    @foreach (var product in Model)
     {
-        @supplier.Name
+        @product.Name
     }
 }
 else

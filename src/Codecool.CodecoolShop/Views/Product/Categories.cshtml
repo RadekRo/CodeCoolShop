@@ -1,47 +1,13 @@
 ﻿@{
-    string categoryName = "Category Name"; 
-    var suppliersByCategory = Model.Where(product => product.ProductCategory.Name == categoryName).Select(product => product.Supplier).Distinct().ToList();
+    ViewData["Title"] = @Model[0].ProductCategory.Name;
 }
-
-@{
-    if (suppliersByCategory.Any())
-    {
-        ViewData["Title"] = categoryName;
-    }
-    else
-    {
-        ViewData["Title"] = "Dostawcy nie znalezieni";
-    }
-}
-
 @model List<Codecool.CodecoolShop.Models.Product>
 
-<h1>Category: @ViewData["Title"]</h1>
+<h1>Category: @Model[0].ProductCategory.Name</h1>
 
-<p>Use this page to show suppliers from the selected category.</p>
-
-@if (suppliersByCategory.Any())
+<p>Use this page to show products from certain category.</p>
+@foreach (var product in Model)
 {
-    <div class="container">
-        @foreach (var supplier in suppliersByCategory)
-        {
-            <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
-                <div class="card">
-                    <!-- Dodaj obraz dostawcy, jeśli jest dostępny -->
-                    <div class="card-body">
-                        <h5 class="card-title">@supplier.Name</h5>
-                        <p class="card-text">Supplier ID: @supplier.Id</p>
-                        <p class="card-text">Category: @categoryName</p>
-                        <p class="card-text text-center">
-                            <a href="" type="button" class="btn btn-primary">View Products</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-}
-else
-{
-    <p>No suppliers found for the selected category.</p>
+    @product.Id @product.Name
+    <br />
 }

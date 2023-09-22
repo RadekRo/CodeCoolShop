@@ -33,5 +33,9 @@ namespace Codecool.CodecoolShop.Services
             return categoriesList.ToList();
 
         }
+        public Product GetProduct(int productId)
+        {
+            return this.productDao.Get(productId);
+        }
     }
 }

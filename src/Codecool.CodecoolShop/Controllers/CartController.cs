@@ -17,16 +17,17 @@ namespace Codecool.CodecoolShop.Controllers
         public IActionResult Index()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            SetCategoriesAndSuppliersInViewData();
             if (cart == null)
             {
                 ViewData["BasketEmpty"] = true;
+                ViewBag.total = 0.00;
             }
             else
             {
                 ViewData["BasketEmpty"] = false;
                 ViewBag.cart = cart;
                 ViewBag.total = cart.Sum(item => item.Product.DefaultPrice * item.Quantity);
-                SetCategoriesAndSuppliersInViewData();
                 GetShoppingCartQty();
             }
             return View();

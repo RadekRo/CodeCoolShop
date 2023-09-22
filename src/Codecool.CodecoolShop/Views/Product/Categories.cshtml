@@ -1,13 +1,61 @@
-﻿@{
+﻿@using System.Globalization;
+
+@{
     ViewData["Title"] = @Model[0].ProductCategory.Name;
 }
 @model List<Codecool.CodecoolShop.Models.Product>
 
 <h1>Category: @Model[0].ProductCategory.Name</h1>
 
-<p>Use this page to show products from certain category.</p>
-@foreach (var product in Model)
-{
-    @product.Id @product.Name
-    <br />
-}
+<br />
+<div class="container">
+    <div class="row">
+        @foreach (var element in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card h-100">
+                    <img src="/img/@(element.Name).jpg" class="card-img-top" alt="@element.Name">
+
+                    <div class="card-body">
+                        <h5 class="card-title">@element.Name</h5>
+
+                        @{
+                            string shortDescription = element.Description.Length > 100 ? element.Description.Substring(0, 100) + "..." : element.Description;
+                        }
+                        <p class="card-text" id="description@(element.Id)">
+                            @shortDescription
+                            @if (element.Description.Length > 100)
+                            {
+                            <p class="text-center">
+                                <a href="#" class="btn btn-link" id="niceButt@(element.Id)" onclick="toggleDescription('@element.Id'); return false;">
+                                    Show More
+                                </a>
+                            </p>
+                            }
+                        </p>
+                        <p class="card-text" id="fullDescription@(element.Id)" style="display: none;">@element.Description</p>
+
+                        <p class="card-text">Category: @element.ProductCategory.Department</p>
+                        <p class="card-text">Supplier: @element.Supplier.Name</p>
+                        <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2", new CultureInfo("en-US"))</strong></p>
+                        <p class="card-text text-center">
+                            <a type="button" class="btn btn-primary" asp-area="" asp-controller="cart" asp-action="addtocart" asp-route-id="@element.Id">Add To Cart</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function toggleDescription(productId) {
+        var shortDescription = document.getElementById(`description${productId}`);
+        var fullDescription = document.getElementById(`fullDescription${productId}`);
+        var buttHide = document.getElementById(`niceButt${productId}`);
+
+        shortDescription.style.display = "none";
+        fullDescription.style.display = "inline";
+        buttHide.style.display = "none";
+    }
+</script>

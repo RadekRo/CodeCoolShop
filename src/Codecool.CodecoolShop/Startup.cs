@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Codecool.CodecoolShop.Daos;
 using Codecool.CodecoolShop.Daos.Implementations;
 using Codecool.CodecoolShop.Models;
@@ -86,9 +87,10 @@ namespace Codecool.CodecoolShop
             ProductCategory googgles = new ProductCategory { Name = "Gogle", Department = "Ochaniacze", Description = "Gogle" };
             productCategoryDataStore.Add(googgles);
             productDataStore.Add(new Product { Name = "IMX FMX 02", DefaultPrice = 99.9m, Currency = "USD", Description = "Kask motocyklowy do jazdy na cross IMX FM-02\r\nKask motocyklowy w którym znajdziesz wydajny system wentylacyjny, wyjmowane poduszki policzkowe i zapiêcie mikrometryczne. Skorupa tego modelu zosta³a wykonana z najwy¿szej jakoœci materia³ów ABS.\r\n\r\nHomologacja ECE 22.05\r\nSkorupa ABS\r\nZapiêcie mikrometryczne\r\n2 wielkoœci EPS\r\nAwaryjne wypiêcie poduszek policzkowych", ProductCategory = helmet, Supplier = imx });
+            productDataStore.Add(new Product { Name = "hjc test", DefaultPrice = 179.0m, Currency = "USD", Description = "Kask", ProductCategory = helmet, Supplier = hjc });
             productDataStore.Add(new Product { Name = "broozer", DefaultPrice = 479.0m, Currency = "USD", Description = "Kask szczêkowy BELL BROOZER SOLID MATTE BLACK czarny", ProductCategory = helmet, Supplier = bell });
             productDataStore.Add(new Product { Name = "MONTANA", DefaultPrice = 89.0m, Currency = "USD", Description = " Kurtka tekstylna BROGER MONTANA BLACK czarny", ProductCategory = jackets, Supplier = broger });
-            productDataStore.Add(new Product { Name = "zjebanyKask", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = helmet, Supplier = bell });
+            productDataStore.Add(new Product { Name = "Kask", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = helmet, Supplier = bell });
             productDataStore.Add(new Product { Name = "giro", DefaultPrice = 89.0m, Currency = "USD", Description = " Taktyczne bojówki w bezpiecznym, motocyklowym wydaniu to model spodni Shima Giro 2.0\r\n", ProductCategory = pants, Supplier = giro });
 
         }

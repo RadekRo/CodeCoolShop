@@ -15,37 +15,49 @@
 
     <div class="container">
         <h3 class="mt-4">Shopping Cart</h3>
-        <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th class="text-center">Option</th>
-                    <th class="text-center">ID</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Photo</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Quantity</th>
-                    <th class="text-center">Sub Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in ViewBag.cart)
-                {
-                <tr>
-                    <td class="text-center align-middle">
-                        <a class="btn btn-danger btn-sm" asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">Remove</a>
-                    </td>
-                    <td class="text-center align-middle">@item.Product.Id</td>
-                    <td class="text-center align-middle">@item.Product.Name</td>
-                    <td class="text-center align-middle">
-                        <img src="/img/@(item.Product.Name).jpg" alt="@item.Product.Name" width="60" />
-                    </td>
-                    <td class="text-center align-middle">@item.Product.DefaultPrice.ToString("C2", new CultureInfo("en-US"))</td>
-                    <td class="text-center align-middle">@item.Quantity</td>
-                    <td class="text-center align-middle">@((item.Product.DefaultPrice * item.Quantity).ToString("C2", new CultureInfo("en-US")))</td>
-                </tr>
-                }
-            </tbody>
-        </table>
+
+        @if ((bool)ViewData["BasketEmpty"] == false && ViewBag.total != 0)
+            {
+            <table class="table table-bordered mt-4">
+                <thead>
+                    <tr>
+                        <th class="text-center">Option</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Photo</th>
+                        <th class="text-center">Price</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Sub Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.cart)
+                    {
+                        <tr>
+                            <td class="text-center align-middle">
+                                <a class="btn btn-danger btn-sm" asp-controller="cart" asp-action="remove" asp-route-id="@item.Product.Id">Remove</a>
+                            </td>
+                            <td class="text-center align-middle">@item.Product.Id</td>
+                            <td class="text-center align-middle">@item.Product.Name</td>
+                            <td class="text-center align-middle">
+                                <img src="/img/@(item.Product.Name).jpg" alt="@item.Product.Name" width="60" />
+                            </td>
+                            <td class="text-center align-middle">@item.Product.DefaultPrice.ToString("C2", new CultureInfo("en-US"))</td>
+                            <td class="text-center align-middle">
+                                <button class="btn btn-sm btn-secondary" onclick="decrementQuantity(@item.Product.Id)">-</button>
+                                <span id="quantity_@item.Product.Id">@item.Quantity</span>
+                                <button class="btn btn-sm btn-secondary" onclick="incrementQuantity(@item.Product.Id)">+</button>
+                            </td>
+                            <td class="text-center align-middle">@((item.Product.DefaultPrice * item.Quantity).ToString("C2", new CultureInfo("en-US")))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-center">Empty Basket</p>
+        }
 
         <div class="text-right">
             <strong>Total:</strong> @ViewBag.total.ToString("C2", new CultureInfo("en-US"))

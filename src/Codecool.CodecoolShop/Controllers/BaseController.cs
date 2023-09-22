@@ -1,8 +1,10 @@
 ﻿using Codecool.CodecoolShop.Daos.Implementations;
+using Codecool.CodecoolShop.Helpers;
 using Codecool.CodecoolShop.Models;
 using Codecool.CodecoolShop.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Codecool.CodecoolShop.Controllers
 {
@@ -26,6 +28,19 @@ namespace Codecool.CodecoolShop.Controllers
         {
             ViewData["Categories"] = ProductService.GetAllProductsCategories();
             ViewData["Suppliers"] = SupplierService.GetAllSuppliers();
+        }
+
+        protected void GetShoppingCartQty()
+        {
+            var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
+            if (cart != null) 
+            {
+                ViewData["BasketQty"] = cart.Sum(item => item.Quantity);
+            }
+            else
+            {
+                ViewData["BasketQty"] = 0;
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Codecool.CodecoolShop.Controllers
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Product.DefaultPrice * item.Quantity);
             SetCategoriesAndSuppliersInViewData();
+            GetShoppingCartQty();
             return View();
         }
 

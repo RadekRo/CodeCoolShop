@@ -27,23 +27,27 @@ namespace Codecool.CodecoolShop.Controllers
         {
             var products = ProductService.GetProductsForCategory(1);
             SetCategoriesAndSuppliersInViewData();
+            GetShoppingCartQty();
             return View(products.ToList());
         }
         public IActionResult Categories(int category)
         {
             SetCategoriesAndSuppliersInViewData();
+            GetShoppingCartQty();
             var products = ProductService.GetProductsForCategory(category);
             return View(products.ToList());
         }
         public IActionResult Suppliers(int supplier)
         {
             SetCategoriesAndSuppliersInViewData();
+            GetShoppingCartQty();
             var products = SupplierService.GetProductsForSupplier(supplier);
             return View(products.ToList());
         }
         public IActionResult Privacy()
         {
             SetCategoriesAndSuppliersInViewData();
+            GetShoppingCartQty();
             return View();
         }
 

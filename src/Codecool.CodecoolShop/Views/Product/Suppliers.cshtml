@@ -1,0 +1,49 @@
+﻿@{
+    int supplierId = 1; 
+    var productsBySupplier = Model.Where(product => product.Supplier.Id == supplierId).ToList();
+}
+
+@{
+    if (productsBySupplier.Any())
+    {
+        ViewData["Title"] = productsBySupplier[0].Supplier.Name;
+    }
+    else
+    {
+        ViewData["Title"] = "Dostawca nie znaleziony";
+    }
+}
+
+@model List<Codecool.CodecoolShop.Models.Product>
+
+<h1>Supplier: @ViewData["Title"]</h1>
+
+<p>Use this page to show products from the selected supplier.</p>
+
+@if (productsBySupplier.Any())
+{
+    <div class="container">
+        @foreach (var product in productsBySupplier)
+        {
+            <div class="col-lg-3 col-lg-3" style="display: inline-block; max-width: 350px; height: 350px">
+                <div class="card">
+                    <img src="/img/@(product.Name).jpg" style="height: 50%; width: 50%; align-self: center; padding-top: 10px">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text">@product.Description</p>
+                        <p class="card-text">Category: @product.ProductCategory.ProductCategory</p>
+                        <p class="card-text">Supplier: @product.Supplier.Name</p>
+                        <p class="card-text text-center"><strong>Price: @product.DefaultPrice.ToString("C2", new System.Globalization.CultureInfo("en-US"))</strong></p>
+                        <p class="card-text text-center">
+                            <a href="" type="button" class="btn btn-primary">Add To Cart</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>No products found for the selected supplier.</p>
+}

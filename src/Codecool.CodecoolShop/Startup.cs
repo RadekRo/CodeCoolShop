@@ -65,6 +65,7 @@ namespace Codecool.CodecoolShop
             IProductCategoryDao productCategoryDataStore = ProductCategoryDaoMemory.GetInstance();
             ISupplierDao supplierDataStore = SupplierDaoMemory.GetInstance();
 
+<<<<<<< Updated upstream
             Supplier amazon = new Supplier{Name = "Amazon", Description = "Digital content and services"};
             supplierDataStore.Add(amazon);
             Supplier lenovo = new Supplier{Name = "Lenovo", Description = "Computers"};
@@ -74,6 +75,32 @@ namespace Codecool.CodecoolShop
             productDataStore.Add(new Product { Name = "Amazon Fire", DefaultPrice = 49.9m, Currency = "USD", Description = "Fantastic price. Large content ecosystem. Good parental controls. Helpful technical support.", ProductCategory = tablet, Supplier = amazon });
             productDataStore.Add(new Product { Name = "Lenovo IdeaPad Miix 700", DefaultPrice = 479.0m, Currency = "USD", Description = "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.", ProductCategory = tablet, Supplier = lenovo });
             productDataStore.Add(new Product { Name = "Amazon Fire HD 8", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = tablet, Supplier = amazon });
+=======
+            Supplier bell = new Supplier{Name = "Bell", Description = "Kaski"};
+            supplierDataStore.Add(bell);
+            Supplier imx = new Supplier{Name = "Imx", Description = "Kaski"};
+            supplierDataStore.Add(imx);
+            Supplier hjc = new Supplier { Name = "HJC", Description = "Kaski" };
+            supplierDataStore.Add(hjc);
+            Supplier broger = new Supplier { Name = "BROGER", Description = "Kurtki" };
+            supplierDataStore.Add(broger);
+            Supplier giro = new Supplier { Name = "GIRO", Description = "Spodnie" };
+            supplierDataStore.Add(giro);
+            ProductCategory helmet = new ProductCategory {Name = "Helmets", ProductCategory = "Helmets", Description = "Helmets" };
+            productCategoryDataStore.Add(helmet);
+            ProductCategory jackets = new ProductCategory { Name = "Jackets", ProductCategory = "Jackets", Description = "Jackets" };
+            productCategoryDataStore.Add(jackets);
+            ProductCategory pants = new ProductCategory { Name = "Pants", ProductCategory = "Pants", Description = "Pants" };
+            productCategoryDataStore.Add(pants);
+            ProductCategory googgles = new ProductCategory { Name = "Goggles", ProductCategory = "Goggles", Description = "Goggles" };
+            productCategoryDataStore.Add(googgles);
+            productDataStore.Add(new Product { Name = "IMX FMX 02", DefaultPrice = 99.9m, Currency = "USD", Description = "Kask motocyklowy do jazdy na cross IMX FM-02\r\nKask motocyklowy w którym znajdziesz wydajny system wentylacyjny, wyjmowane poduszki policzkowe i zapiêcie mikrometryczne. Skorupa tego modelu zosta³a wykonana z najwy¿szej jakoœci materia³ów ABS.\r\n\r\nHomologacja ECE 22.05\r\nSkorupa ABS\r\nZapiêcie mikrometryczne\r\n2 wielkoœci EPS\r\nAwaryjne wypiêcie poduszek policzkowych", ProductCategory = helmet, Supplier = imx });
+            productDataStore.Add(new Product { Name = "broozer", DefaultPrice = 479.0m, Currency = "USD", Description = "Kask szczêkowy BELL BROOZER SOLID MATTE BLACK czarny", ProductCategory = helmet, Supplier = bell });
+            productDataStore.Add(new Product { Name = "MONTANA", DefaultPrice = 89.0m, Currency = "USD", Description = " Kurtka tekstylna BROGER MONTANA BLACK czarny", ProductCategory = jackets, Supplier = broger });
+            productDataStore.Add(new Product { Name = "zjebanyKask", DefaultPrice = 89.0m, Currency = "USD", Description = "Amazon's latest Fire HD 8 tablet is a great value for media consumption.", ProductCategory = helmet, Supplier = bell });
+            productDataStore.Add(new Product { Name = "giro", DefaultPrice = 89.0m, Currency = "USD", Description = " Taktyczne bojówki w bezpiecznym, motocyklowym wydaniu to model spodni Shima Giro 2.0\r\n", ProductCategory = pants, Supplier = giro });
+
+>>>>>>> Stashed changes
         }
     }
 }

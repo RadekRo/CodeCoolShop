@@ -11,25 +11,22 @@ using Codecool.CodecoolShop.Daos.Implementations;
 namespace Codecool.CodecoolShop.Controllers
 {
     [Route("cart")]
-    public class CartController : Controller
+    public class CartController : BaseController
     {
-        public ProductService ProductService { get; set; }
-        public SupplierService SupplierService { get; set; }
-
         [Route("index")]
         public IActionResult Index()
         {
             var cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             ViewBag.cart = cart;
             ViewBag.total = cart.Sum(item => item.Product.DefaultPrice * item.Quantity);
+            SetCategoriesAndSuppliersInViewData();
             return View();
         }
 
         [Route("addtocart/{id}")]
         public IActionResult AddToCart(string id)
         {
-            ProductService = new ProductService(ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance()); ;
+ 
             if (SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart") == null)
             {
                 List<Item> cart = new List<Item>();

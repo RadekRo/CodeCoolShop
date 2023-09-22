@@ -13,58 +13,37 @@ using Microsoft.AspNetCore.Mvc.Razor.Compilation;
 
 namespace Codecool.CodecoolShop.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly ILogger<ProductController> _logger;
-        public ProductService ProductService { get; set; }
-        public SupplierService SupplierService { get; set; }    
-
+       
         public ProductController(ILogger<ProductController> logger)
         {
             _logger = logger;
-            ProductService = new ProductService(
-                ProductDaoMemory.GetInstance(),
-                ProductCategoryDaoMemory.GetInstance());
 
-            SupplierService = new SupplierService(
-                ProductDaoMemory.GetInstance(),
-                SupplierDaoMemory.GetInstance());
-        }
-        private void SetCategoriesInViewData()
-        {
-            ViewData["categories"] = ProductService.GetAllProductsCategories();
-        }
-
-        private void SetSuppliersInViewData()
-        {
-            ViewData["suppliers"] = SupplierService.GetAllSuppliers();
         }
 
         public IActionResult Index()
         {
             var products = ProductService.GetProductsForCategory(1);
-            SetCategoriesInViewData();
-            SetSuppliersInViewData();
+            SetCategoriesAndSuppliersInViewData();
             return View(products.ToList());
         }
         public IActionResult Categories(int category)
         {
-            SetCategoriesInViewData();
-            SetSuppliersInViewData();
+            SetCategoriesAndSuppliersInViewData();
             var products = ProductService.GetProductsForCategory(category);
             return View(products.ToList());
         }
         public IActionResult Suppliers(int supplier)
         {
-            SetCategoriesInViewData();
-            SetSuppliersInViewData();
+            SetCategoriesAndSuppliersInViewData();
             var products = SupplierService.GetProductsForSupplier(supplier);
             return View(products.ToList());
         }
         public IActionResult Privacy()
         {
-            SetCategoriesInViewData();
-            SetSuppliersInViewData();
+            SetCategoriesAndSuppliersInViewData();
             return View();
         }
 

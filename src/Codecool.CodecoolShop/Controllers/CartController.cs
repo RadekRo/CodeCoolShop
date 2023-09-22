@@ -14,6 +14,7 @@ namespace Codecool.CodecoolShop.Controllers
     public class CartController : Controller
     {
         public ProductService ProductService { get; set; }
+        public SupplierService SupplierService { get; set; }
 
         [Route("index")]
         public IActionResult Index()
@@ -24,8 +25,8 @@ namespace Codecool.CodecoolShop.Controllers
             return View();
         }
 
-        [Route("buy/{id}")]
-        public IActionResult Buy(string id)
+        [Route("addtocart/{id}")]
+        public IActionResult AddToCart(string id)
         {
             ProductService = new ProductService(ProductDaoMemory.GetInstance(),
                 ProductCategoryDaoMemory.GetInstance()); ;
@@ -38,7 +39,7 @@ namespace Codecool.CodecoolShop.Controllers
             else
             {
                 List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-                int index = isExist(id);
+                int index = isExist(Convert.ToInt32(id));
                 if (index != -1)
                 {
                     cart[index].Quantity++;
@@ -56,13 +57,13 @@ namespace Codecool.CodecoolShop.Controllers
         public IActionResult Remove(string id)
         {
             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
-            int index = isExist(id);
+            int index = isExist(Convert.ToInt32(id));
             cart.RemoveAt(index);
             SessionHelper.SetObjectAsJson(HttpContext.Session, "cart", cart);
             return RedirectToAction("Index");
         }
 
-        private int isExist(string id)
+        private int isExist(int id)
         {
             List<Item> cart = SessionHelper.GetObjectFromJson<List<Item>>(HttpContext.Session, "cart");
             for (int i = 0; i < cart.Count; i++)

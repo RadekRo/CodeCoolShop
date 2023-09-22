@@ -30,7 +30,7 @@
                     <p class="card-text">Supplier: @element.Supplier.Name</p>
                     <p class="card-text text-center"><strong>Price: @element.DefaultPrice.ToString("C2", new CultureInfo("en-US"))</strong></p>
                     <p class="card-text text-center">
-                        <a type="button" class="btn btn-primary" asp-area="" asp-controller="cart" asp-action="buy" asp-route-id="@element.Id">Add To Cart</a>
+                        <a type="button" class="btn btn-primary" asp-area="" asp-controller="cart" asp-action="addtocart" asp-route-id="@element.Id">Add To Cart</a>
                     </p>
                 </div>
             </div>

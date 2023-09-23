@@ -66,6 +66,12 @@
         <div class="mt-4">
             <a class="btn btn-primary" asp-controller="product" asp-action="index">Continue Shopping</a>
         </div>
+        @if ((bool)ViewData["BasketEmpty"] == false && ViewBag.total != 0)
+        {
+            <div class="mt-4">
+                <a class="btn btn-success" asp-controller="product" asp-action="index">Checkout</a>
+            </div>
+        }
     </div>
 
 

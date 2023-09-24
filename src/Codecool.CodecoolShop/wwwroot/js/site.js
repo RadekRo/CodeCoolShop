@@ -29,3 +29,4 @@ function toggleDescription(productId) {
     fullDescription.style.display = "inline";
     buttHide.style.display = "none";
 }
+

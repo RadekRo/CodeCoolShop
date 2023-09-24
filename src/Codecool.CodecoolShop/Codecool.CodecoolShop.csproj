@@ -7,12 +7,20 @@
   <ItemGroup>
     <Compile Remove="NewFolder1\**" />
     <Compile Remove="NewFolder\**" />
+    <Compile Remove="Views\NewFolder\**" />
     <Content Remove="NewFolder1\**" />
     <Content Remove="NewFolder\**" />
+    <Content Remove="Views\NewFolder\**" />
     <EmbeddedResource Remove="NewFolder1\**" />
     <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="Views\NewFolder\**" />
     <None Remove="NewFolder1\**" />
     <None Remove="NewFolder\**" />
+    <None Remove="Views\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\img\Helmy helmet 1.0.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,10 +31,6 @@
     <Content Update="Views\Supplier\Index.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\NewFolder\" />
   </ItemGroup>
 
 </Project>
